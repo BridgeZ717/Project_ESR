@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Natural Z</title>
+    <!-- Chart JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="topnav">
+        <a href="Natural_X.html">X Chart</a>
+        <a href="Natural_Y.html">Y Chart</a>
+        <a href="Natural_Z.html">Z Chart</a>
+        <a class="active" href="merge.html">Merge Chart</a>
+    </div>
+    <div>
+        <p>start from</p>
+        <input type="text" id="start" value="950">
+        <p>to</p>
+        <input type="text" id="end" value="1250">
+        <button onclick="creatChart()">Show Chart</button></div>
+    <canvas id="myChart"></canvas>
+    <div id="minmax"></div>
+    <script>
+        var degree = 0;
+        const xlabels = [];
+        var xlabelsFlag = 0; //check is there any X labels in the chart
+        const dg0 = [];
+        const dg20 = [];
+        const dg40 = [];
+        const dg60 = [];
+        const dg80 = [];
+        const dg100 = [];
+        const dg120 = [];
+        const dg140 = [];
+        const dg160 = [];
+        const dg180 = [];
+        //creatChart();
+
+        async function creatChart() {
+            xlabelsFlag = 0;
+            degree = 0;
+            await getData('data/Z/ESR_BC_1_Natural_Z_gon_0dg_result.csv', dg0);
+            xlabelsFlag = 1;
+            await getData('data/Z/ESR_BC_1_Natural_Z_gon_20dg_result.csv', dg20);
+            await getData('data/Z/ESR_BC_1_Natural_Z_gon_40dg_result.csv', dg40);
+            await getData('data/Z/ESR_BC_1_Natural_Z_gon_60dg_result.csv', dg60);
+            await getData('data/Z/ESR_BC_1_Natural_Z_gon_80dg_result.csv', dg80);
+            await getData('data/Z/ESR_BC_1_Natural_Z_gon_100dg_result.csv', dg100);
+            await getData('data/Z/ESR_BC_1_Natural_Z_gon_120dg_result.csv', dg120);
+            await getData('data/Z/ESR_BC_1_Natural_Z_gon_140dg_result.csv', dg140);
+            await getData('data/Z/ESR_BC_1_Natural_Z_gon_160dg_result.csv', dg160);
+            await getData('data/Z/ESR_BC_1_Natural_Z_gon_180dg_result.csv', dg180);
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const chart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'line',
+                // The data for our dataset
+                data: {
+                    labels: xlabels,
+                    datasets: [{
+                        label: '0dg',
+                        fill: false,
+                        //backgroundColor: 'rgb(255, 99, 132)',
+                        borderWidth: 2,
+                        borderColor: 'rgb(0, 108, 192)',
+                        data: dg0
+                    }, {
+                        label: '20dg',
+                        fill: false,
+                        //backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(58, 120, 187)',
+                        borderWidth: 2,
+                        data: dg20
+                    }, {
+                        label: '40dg',
+                        fill: false,
+                        //backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(82, 132, 181)',
+                        borderWidth: 2,
+                        data: dg40
+                    }, {
+                        label: '60dg',
+                        fill: false,
+                        //backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(101, 144, 175)',
+                        borderWidth: 2,
+                        data: dg60
+                    }, {
+                        label: '80dg',
+                        fill: false,
+                        //backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(116, 157, 169)',
+                        borderWidth: 2,
+                        data: dg80
+                    }, {
+                        label: '100dg',
+                        fill: false,
+                        //backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(129, 170, 163)',
+                        borderWidth: 2,
+                        data: dg100
+                    }, {
+                        label: '120dg',
+                        fill: false,
+                        //backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(141, 183, 156)',
+                        borderWidth: 2,
+                        data: dg120
+                    }, {
+                        label: '140dg',
+                        fill: false,
+                        //backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(151, 196, 148)',
+                        borderWidth: 2,
+                        data: dg140
+                    }, {
+                        label: '160dg',
+                        fill: false,
+                        //backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(161, 210, 141)',
+                        borderWidth: 2,
+                        data: dg160
+                    }, {
+                        label: '180dg',
+                        fill: false,
+                        //backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(171, 223, 132)',
+                        borderWidth: 2,
+                        data: dg180
+                    }]
+                },
+
+                // Configuration options go here
+                options: {}
+            });
+        }
+
+        async function getData(file, dg) {
+            var startIndex = document.getElementById("start").value;
+            var endIndex = document.getElementById("end").value;
+            console.log(startIndex, endIndex)
+            const response = await fetch(file);
+            const data = await response.text();
+            //console.log(data);
+            const rows = data.split('\n').slice(startIndex, endIndex); //each line becomes to a variable, slice(51) -> ignore index 0(title) start from index 51
+            rows.forEach(elt => {
+                const row = elt.split(';');
+                const BField = row[0];
+                if (xlabelsFlag == 0)
+                    xlabels.push(BField);
+                const mt = row[1];
+                dg.push(mt);
+                //console.log(row);
+            });
+            var min = Math.min.apply(this, dg),
+                max = Math.max.apply(this, dg);
+            console.log(dg)
+            console.log("min: " + min);
+            console.log("max: " + max);
+            document.getElementById("minmax").innerHTML += degree + "dg" + " Min: " + min + " Max: " + max + "<br>";
+            degree += 20;
+        }
+    </script>
+
+
+
+</body>
+
+</html>
