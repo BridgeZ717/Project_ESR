@@ -20,9 +20,9 @@
     </div>
     <div>
         <p>start from</p>
-        <input type="text" id="start" value="950">
+        <input type="text" id="start" value="51">
         <p>to</p>
-        <input type="text" id="end" value="1250">
+        <input type="text" id="end" value="3000">
         <button onclick="creatChart()">Show Chart</button></div>
     <canvas id="myChart"></canvas>
     <div id="minmax"></div>
@@ -30,32 +30,98 @@
         var degree = 0;
         const xlabels = [];
         var xlabelsFlag = 0; //check is there any X labels in the chart
-        const dg0 = [];
-        const dg20 = [];
-        const dg40 = [];
-        const dg60 = [];
-        const dg80 = [];
-        const dg100 = [];
-        const dg120 = [];
-        const dg140 = [];
-        const dg160 = [];
-        const dg180 = [];
+        const xdg0 = [];
+        const xdg20 = [];
+        const xdg40 = [];
+        const xdg60 = [];
+        const xdg80 = [];
+        const xdg100 = [];
+        const xdg120 = [];
+        const xdg140 = [];
+        const xdg160 = [];
+        const xdg180 = [];
+        const ydg0 = [];
+        const ydg20 = [];
+        const ydg40 = [];
+        const ydg60 = [];
+        const ydg80 = [];
+        const ydg100 = [];
+        const ydg120 = [];
+        const ydg140 = [];
+        const ydg160 = [];
+        const ydg180 = [];
+        const zdg0 = [];
+        const zdg20 = [];
+        const zdg40 = [];
+        const zdg60 = [];
+        const zdg80 = [];
+        const zdg100 = [];
+        const zdg120 = [];
+        const zdg140 = [];
+        const zdg160 = [];
+        const zdg180 = [];
+        const xAve = [];
+        const yAve = [];
+        const zAve = [];
+        const finalAve = [];
         //creatChart();
 
         async function creatChart() {
             xlabelsFlag = 0;
             degree = 0;
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_0dg_result.csv', dg0);
+
+            await getData('data/X/ESR_BC_1_Natural_X_gon_0dg_result.csv', xdg0);
             xlabelsFlag = 1;
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_20dg_result.csv', dg20);
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_40dg_result.csv', dg40);
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_60dg_result.csv', dg60);
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_80dg_result.csv', dg80);
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_100dg_result.csv', dg100);
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_120dg_result.csv', dg120);
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_140dg_result.csv', dg140);
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_160dg_result.csv', dg160);
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_180dg_result.csv', dg180);
+            await getData('data/X/ESR_BC_1_Natural_X_gon_20dg_result.csv', xdg20);
+            await getData('data/X/ESR_BC_1_Natural_X_gon_40dg_result.csv', xdg40);
+            await getData('data/X/ESR_BC_1_Natural_X_gon_60dg_result.csv', xdg60);
+            await getData('data/X/ESR_BC_1_Natural_X_gon_80dg_result.csv', xdg80);
+            await getData('data/X/ESR_BC_1_Natural_X_gon_100dg_result.csv', xdg100);
+            await getData('data/X/ESR_BC_1_Natural_X_gon_120dg_result.csv', xdg120);
+            await getData('data/X/ESR_BC_1_Natural_X_gon_140dg_result.csv', xdg140);
+            await getData('data/X/ESR_BC_1_Natural_X_gon_160dg_result.csv', xdg160);
+            await getData('data/X/ESR_BC_1_Natural_X_gon_180dg_result.csv', xdg180);
+            average(xAve, xdg0, xdg20, xdg40, xdg60, xdg80, xdg100, xdg120, xdg140, xdg160, xdg180);
+            console.log(xAve);
+
+            await getData('data/Y/ESR_BC_1_Natural_Y_gon_0dg_result.csv', ydg0);
+            await getData('data/Y/ESR_BC_1_Natural_Y_gon_20dg_result.csv', ydg20);
+            await getData('data/Y/ESR_BC_1_Natural_Y_gon_40dg_result.csv', ydg40);
+            await getData('data/Y/ESR_BC_1_Natural_Y_gon_60dg_result.csv', ydg60);
+            await getData('data/Y/ESR_BC_1_Natural_Y_gon_80dg_result.csv', ydg80);
+            await getData('data/Y/ESR_BC_1_Natural_Y_gon_100dg_result.csv', ydg100);
+            await getData('data/Y/ESR_BC_1_Natural_Y_gon_120dg_result.csv', ydg120);
+            await getData('data/Y/ESR_BC_1_Natural_Y_gon_140dg_result.csv', ydg140);
+            await getData('data/Y/ESR_BC_1_Natural_Y_gon_160dg_result.csv', ydg160);
+            await getData('data/Y/ESR_BC_1_Natural_Y_gon_180dg_result.csv', ydg180);
+            average(yAve, ydg0, ydg20, ydg40, ydg60, ydg80, ydg100, ydg120, ydg140, ydg160, ydg180);
+            console.log(yAve);
+
+            await getData('data/Z/ESR_BC_1_Natural_Z_gon_0dg_result.csv', zdg0);
+            await getData('data/Z/ESR_BC_1_Natural_Z_gon_20dg_result.csv', zdg20);
+            await getData('data/Z/ESR_BC_1_Natural_Z_gon_40dg_result.csv', zdg40);
+            await getData('data/Z/ESR_BC_1_Natural_Z_gon_60dg_result.csv', zdg60);
+            await getData('data/Z/ESR_BC_1_Natural_Z_gon_80dg_result.csv', zdg80);
+            await getData('data/Z/ESR_BC_1_Natural_Z_gon_100dg_result.csv', zdg100);
+            await getData('data/Z/ESR_BC_1_Natural_Z_gon_120dg_result.csv', zdg120);
+            await getData('data/Z/ESR_BC_1_Natural_Z_gon_140dg_result.csv', zdg140);
+            await getData('data/Z/ESR_BC_1_Natural_Z_gon_160dg_result.csv', zdg160);
+            await getData('data/Z/ESR_BC_1_Natural_Z_gon_180dg_result.csv', zdg180);
+            average(zAve, zdg0, zdg20, zdg40, zdg60, zdg80, zdg100, zdg120, zdg140, zdg160, zdg180);
+            console.log(zAve);
+
+            finAverage(finalAve, xAve, yAve, zAve)
+
+
+
+
+
+
+
+
+
+
+
             const ctx = document.getElementById('myChart').getContext('2d');
             const chart = new Chart(ctx, {
                 // The type of chart we want to create
@@ -69,70 +135,7 @@
                         //backgroundColor: 'rgb(255, 99, 132)',
                         borderWidth: 2,
                         borderColor: 'rgb(0, 108, 192)',
-                        data: dg0
-                    }, {
-                        label: '20dg',
-                        fill: false,
-                        //backgroundColor: 'rgb(255, 99, 132)',
-                        borderColor: 'rgb(58, 120, 187)',
-                        borderWidth: 2,
-                        data: dg20
-                    }, {
-                        label: '40dg',
-                        fill: false,
-                        //backgroundColor: 'rgb(255, 99, 132)',
-                        borderColor: 'rgb(82, 132, 181)',
-                        borderWidth: 2,
-                        data: dg40
-                    }, {
-                        label: '60dg',
-                        fill: false,
-                        //backgroundColor: 'rgb(255, 99, 132)',
-                        borderColor: 'rgb(101, 144, 175)',
-                        borderWidth: 2,
-                        data: dg60
-                    }, {
-                        label: '80dg',
-                        fill: false,
-                        //backgroundColor: 'rgb(255, 99, 132)',
-                        borderColor: 'rgb(116, 157, 169)',
-                        borderWidth: 2,
-                        data: dg80
-                    }, {
-                        label: '100dg',
-                        fill: false,
-                        //backgroundColor: 'rgb(255, 99, 132)',
-                        borderColor: 'rgb(129, 170, 163)',
-                        borderWidth: 2,
-                        data: dg100
-                    }, {
-                        label: '120dg',
-                        fill: false,
-                        //backgroundColor: 'rgb(255, 99, 132)',
-                        borderColor: 'rgb(141, 183, 156)',
-                        borderWidth: 2,
-                        data: dg120
-                    }, {
-                        label: '140dg',
-                        fill: false,
-                        //backgroundColor: 'rgb(255, 99, 132)',
-                        borderColor: 'rgb(151, 196, 148)',
-                        borderWidth: 2,
-                        data: dg140
-                    }, {
-                        label: '160dg',
-                        fill: false,
-                        //backgroundColor: 'rgb(255, 99, 132)',
-                        borderColor: 'rgb(161, 210, 141)',
-                        borderWidth: 2,
-                        data: dg160
-                    }, {
-                        label: '180dg',
-                        fill: false,
-                        //backgroundColor: 'rgb(255, 99, 132)',
-                        borderColor: 'rgb(171, 223, 132)',
-                        borderWidth: 2,
-                        data: dg180
+                        data: finalAve
                     }]
                 },
 
@@ -144,7 +147,7 @@
         async function getData(file, dg) {
             var startIndex = document.getElementById("start").value;
             var endIndex = document.getElementById("end").value;
-            console.log(startIndex, endIndex)
+            //console.log(startIndex, endIndex)
             const response = await fetch(file);
             const data = await response.text();
             //console.log(data);
@@ -156,15 +159,26 @@
                     xlabels.push(BField);
                 const mt = row[1];
                 dg.push(mt);
-                //console.log(row);
             });
-            var min = Math.min.apply(this, dg),
-                max = Math.max.apply(this, dg);
-            console.log(dg)
-            console.log("min: " + min);
-            console.log("max: " + max);
-            document.getElementById("minmax").innerHTML += degree + "dg" + " Min: " + min + " Max: " + max + "<br>";
-            degree += 20;
+            //var min = Math.min.apply(this, dg),
+            //    max = Math.max.apply(this, dg);
+            //document.getElementById("minmax").innerHTML += degree + "dg" + " Min: " + min + " Max: " + max + "<br>";
+        }
+
+
+        function average(arr, dg0, dg20, dg40, dg60, dg80, dg100, dg120, dg140, dg160, dg180) {
+            for (var i = 0; i < dg0.length; i++) {
+                const ave = ((+dg0[i]) + (+dg20[i]) + (+dg40[i]) + (+dg60[i]) + (+dg80[i]) + (+dg100[i]) + (+dg120[i]) + (+dg140[i]) + (+dg160[i]) + (+dg180[i])) / 10
+                arr.push(ave);
+            }
+        }
+
+        function finAverage(arr, x, y, z) {
+            for (var i = 0; i < x.length; i++) {
+                const ave = ((+x[i]) + (+y[i]) + (+z[i])) / 3
+                arr.push(ave);
+            }
+
         }
     </script>
 
