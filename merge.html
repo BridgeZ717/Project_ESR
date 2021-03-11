@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Natural Z</title>
+    <title>Merge</title>
     <!-- Chart JS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
     <!-- Jquery -->
@@ -22,7 +22,7 @@
         <p>start from</p>
         <input type="text" id="start" value="51">
         <p>to</p>
-        <input type="text" id="end" value="3000">
+        <input type="text" id="end" value="2300">
         <button onclick="creatChart()">Show Chart</button></div>
     <canvas id="myChart"></canvas>
     <div id="minmax"></div>
@@ -70,57 +70,48 @@
             xlabelsFlag = 0;
             degree = 0;
 
-            await getData('data/X/ESR_BC_1_Natural_X_gon_0dg_result.csv', xdg0);
+            await getData('./data/X/ESR_BC_1_Natural_X_gon_0dg_result.csv', xdg0);
             xlabelsFlag = 1;
-            await getData('data/X/ESR_BC_1_Natural_X_gon_20dg_result.csv', xdg20);
-            await getData('data/X/ESR_BC_1_Natural_X_gon_40dg_result.csv', xdg40);
-            await getData('data/X/ESR_BC_1_Natural_X_gon_60dg_result.csv', xdg60);
-            await getData('data/X/ESR_BC_1_Natural_X_gon_80dg_result.csv', xdg80);
-            await getData('data/X/ESR_BC_1_Natural_X_gon_100dg_result.csv', xdg100);
-            await getData('data/X/ESR_BC_1_Natural_X_gon_120dg_result.csv', xdg120);
-            await getData('data/X/ESR_BC_1_Natural_X_gon_140dg_result.csv', xdg140);
-            await getData('data/X/ESR_BC_1_Natural_X_gon_160dg_result.csv', xdg160);
-            await getData('data/X/ESR_BC_1_Natural_X_gon_180dg_result.csv', xdg180);
+            await getData('./data/X/ESR_BC_1_Natural_X_gon_20dg_result.csv', xdg20);
+            await getData('./data/X/ESR_BC_1_Natural_X_gon_40dg_result.csv', xdg40);
+            await getData('./data/X/ESR_BC_1_Natural_X_gon_60dg_result.csv', xdg60);
+            await getData('./data/X/ESR_BC_1_Natural_X_gon_80dg_result.csv', xdg80);
+            await getData('./data/X/ESR_BC_1_Natural_X_gon_100dg_result.csv', xdg100);
+            await getData('./data/X/ESR_BC_1_Natural_X_gon_120dg_result.csv', xdg120);
+            await getData('./data/X/ESR_BC_1_Natural_X_gon_140dg_result.csv', xdg140);
+            await getData('./data/X/ESR_BC_1_Natural_X_gon_160dg_result.csv', xdg160);
+            await getData('./data/X/ESR_BC_1_Natural_X_gon_180dg_result.csv', xdg180);
             average(xAve, xdg0, xdg20, xdg40, xdg60, xdg80, xdg100, xdg120, xdg140, xdg160, xdg180);
             console.log(xAve);
 
-            await getData('data/Y/ESR_BC_1_Natural_Y_gon_0dg_result.csv', ydg0);
-            await getData('data/Y/ESR_BC_1_Natural_Y_gon_20dg_result.csv', ydg20);
-            await getData('data/Y/ESR_BC_1_Natural_Y_gon_40dg_result.csv', ydg40);
-            await getData('data/Y/ESR_BC_1_Natural_Y_gon_60dg_result.csv', ydg60);
-            await getData('data/Y/ESR_BC_1_Natural_Y_gon_80dg_result.csv', ydg80);
-            await getData('data/Y/ESR_BC_1_Natural_Y_gon_100dg_result.csv', ydg100);
-            await getData('data/Y/ESR_BC_1_Natural_Y_gon_120dg_result.csv', ydg120);
-            await getData('data/Y/ESR_BC_1_Natural_Y_gon_140dg_result.csv', ydg140);
-            await getData('data/Y/ESR_BC_1_Natural_Y_gon_160dg_result.csv', ydg160);
-            await getData('data/Y/ESR_BC_1_Natural_Y_gon_180dg_result.csv', ydg180);
+            await getData('./data/Y/ESR_BC_1_Natural_Y_gon_0dg_result.csv', ydg0);
+            await getData('./data/Y/ESR_BC_1_Natural_Y_gon_20dg_result.csv', ydg20);
+            await getData('./data/Y/ESR_BC_1_Natural_Y_gon_40dg_result.csv', ydg40);
+            await getData('./data/Y/ESR_BC_1_Natural_Y_gon_60dg_result.csv', ydg60);
+            await getData('./data/Y/ESR_BC_1_Natural_Y_gon_80dg_result.csv', ydg80);
+            await getData('./data/Y/ESR_BC_1_Natural_Y_gon_100dg_result.csv', ydg100);
+            await getData('./data/Y/ESR_BC_1_Natural_Y_gon_120dg_result.csv', ydg120);
+            await getData('./data/Y/ESR_BC_1_Natural_Y_gon_140dg_result.csv', ydg140);
+            await getData('./data/Y/ESR_BC_1_Natural_Y_gon_160dg_result.csv', ydg160);
+            await getData('./data/Y/ESR_BC_1_Natural_Y_gon_180dg_result.csv', ydg180);
             average(yAve, ydg0, ydg20, ydg40, ydg60, ydg80, ydg100, ydg120, ydg140, ydg160, ydg180);
             console.log(yAve);
 
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_0dg_result.csv', zdg0);
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_20dg_result.csv', zdg20);
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_40dg_result.csv', zdg40);
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_60dg_result.csv', zdg60);
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_80dg_result.csv', zdg80);
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_100dg_result.csv', zdg100);
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_120dg_result.csv', zdg120);
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_140dg_result.csv', zdg140);
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_160dg_result.csv', zdg160);
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_180dg_result.csv', zdg180);
+            await getData('./data/Z/ESR_BC_1_Natural_Z_gon_0dg_result.csv', zdg0);
+            await getData('./data/Z/ESR_BC_1_Natural_Z_gon_20dg_result.csv', zdg20);
+            await getData('./data/Z/ESR_BC_1_Natural_Z_gon_40dg_result.csv', zdg40);
+            await getData('./data/Z/ESR_BC_1_Natural_Z_gon_60dg_result.csv', zdg60);
+            await getData('./data/Z/ESR_BC_1_Natural_Z_gon_80dg_result.csv', zdg80);
+            await getData('./data/Z/ESR_BC_1_Natural_Z_gon_100dg_result.csv', zdg100);
+            await getData('./data/Z/ESR_BC_1_Natural_Z_gon_120dg_result.csv', zdg120);
+            await getData('./data/Z/ESR_BC_1_Natural_Z_gon_140dg_result.csv', zdg140);
+            await getData('./data/Z/ESR_BC_1_Natural_Z_gon_160dg_result.csv', zdg160);
+            await getData('./data/Z/ESR_BC_1_Natural_Z_gon_180dg_result.csv', zdg180);
             average(zAve, zdg0, zdg20, zdg40, zdg60, zdg80, zdg100, zdg120, zdg140, zdg160, zdg180);
             console.log(zAve);
 
             finAverage(finalAve, xAve, yAve, zAve)
-
-
-
-
-
-
-
-
-
-
+           
 
             const ctx = document.getElementById('myChart').getContext('2d');
             const chart = new Chart(ctx, {
@@ -130,7 +121,7 @@
                 data: {
                     labels: xlabels,
                     datasets: [{
-                        label: '0dg',
+                        label: 'Merge',
                         fill: false,
                         //backgroundColor: 'rgb(255, 99, 132)',
                         borderWidth: 2,
@@ -150,19 +141,18 @@
             //console.log(startIndex, endIndex)
             const response = await fetch(file);
             const data = await response.text();
+            var i = 0;
             //console.log(data);
             const rows = data.split('\n').slice(startIndex, endIndex); //each line becomes to a variable, slice(51) -> ignore index 0(title) start from index 51
             rows.forEach(elt => {
                 const row = elt.split(';');
                 const BField = row[0];
+                i +=1;
                 if (xlabelsFlag == 0)
-                    xlabels.push(BField);
+                    xlabels.push(i);
                 const mt = row[1];
                 dg.push(mt);
             });
-            //var min = Math.min.apply(this, dg),
-            //    max = Math.max.apply(this, dg);
-            //document.getElementById("minmax").innerHTML += degree + "dg" + " Min: " + min + " Max: " + max + "<br>";
         }
 
 
@@ -178,7 +168,10 @@
                 const ave = ((+x[i]) + (+y[i]) + (+z[i])) / 3
                 arr.push(ave);
             }
-
+            console.log(arr)
+            const min = Math.min.apply(null, arr),
+                max = Math.max.apply(null, arr);
+            document.getElementById("minmax").innerHTML +=  " Min: " + min + " Max: " + max + "<br>";
         }
     </script>
 

@@ -45,17 +45,17 @@
         async function creatChart() {
             xlabelsFlag = 0;
             degree = 0;
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_0dg_result.csv', dg0);
+            await getData('./data/Z/ESR_BC_1_Natural_Z_gon_0dg_result.csv', dg0);
             xlabelsFlag = 1;
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_20dg_result.csv', dg20);
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_40dg_result.csv', dg40);
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_60dg_result.csv', dg60);
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_80dg_result.csv', dg80);
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_100dg_result.csv', dg100);
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_120dg_result.csv', dg120);
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_140dg_result.csv', dg140);
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_160dg_result.csv', dg160);
-            await getData('data/Z/ESR_BC_1_Natural_Z_gon_180dg_result.csv', dg180);
+            await getData('./data/Z/ESR_BC_1_Natural_Z_gon_20dg_result.csv', dg20);
+            await getData('./data/Z/ESR_BC_1_Natural_Z_gon_40dg_result.csv', dg40);
+            await getData('./data/Z/ESR_BC_1_Natural_Z_gon_60dg_result.csv', dg60);
+            await getData('./data/Z/ESR_BC_1_Natural_Z_gon_80dg_result.csv', dg80);
+            await getData('./data/Z/ESR_BC_1_Natural_Z_gon_100dg_result.csv', dg100);
+            await getData('./data/Z/ESR_BC_1_Natural_Z_gon_120dg_result.csv', dg120);
+            await getData('./data/Z/ESR_BC_1_Natural_Z_gon_140dg_result.csv', dg140);
+            await getData('./data/Z/ESR_BC_1_Natural_Z_gon_160dg_result.csv', dg160);
+            await getData('./data/Z/ESR_BC_1_Natural_Z_gon_180dg_result.csv', dg180);
             const ctx = document.getElementById('myChart').getContext('2d');
             const chart = new Chart(ctx, {
                 // The type of chart we want to create
@@ -165,6 +165,16 @@
             console.log("max: " + max);
             document.getElementById("minmax").innerHTML += degree + "dg" + " Min: " + min + " Max: " + max + "<br>";
             degree += 20;
+        }
+
+
+        const xAve = []
+
+        function average(arr, dg0, dg20, dg40, dg60, dg80, dg100, dg120, dg140, dg160, dg180) {
+            for (var i = 0; i < dg0.length; i++) {
+                const ave = (dg0[i] + dg20[i] + dg40[i] + dg60[i] + dg80[i] + dg100[i] + dg120[i] + dg140[i] + dg160[i] + dg180[i]) / 10
+                arr.push(ave);
+            }
         }
     </script>
 
