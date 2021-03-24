@@ -20,5 +20,11 @@
     </div>
 
 </body>
+<script>
+    window.onload = function () {
+        var fileName = prompt("Please put all your data into 'data' folder. And then please input your data set name. For example if your file is 'BF_ESR_06_360s_X_gon_0dg_result.csv' then you should input 'BF_ESR_06_360s'");
+        localStorage.setItem("storageName", fileName);
+    }
+</script>
 
 </html>

@@ -132,8 +132,8 @@
 
         async function getData(file, dg) {
             //dg = [];
-            var startIndex = document.getElementById("start").value;
-            var endIndex = document.getElementById("end").value;
+            var startIndex = document.getElementById("start").value-51;
+            var endIndex = document.getElementById("end").value-51;
             console.log(startIndex, endIndex)
             const response = await fetch(file);
             const data = await response.text();
